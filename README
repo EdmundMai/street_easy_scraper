@@ -2,3 +2,8 @@ Command line script to grab the 20 most expensive sale and rental properties in 
 
 Usage: ruby main.rb <property_type>
 Example: ruby main.rb sale
+
+Required Dependencies: mechanize gem
+
+Before running, please install the mechanize gem:
+`gem install mechanize`
