@@ -1,0 +1,4 @@
+Command line script to grab the 20 most expensive sale and rental properties in Soho.
+
+Usage: ruby main.rb <property_type>
+Example: ruby main.rb sale
