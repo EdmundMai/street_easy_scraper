@@ -1,18 +1,13 @@
-require 'json'
-require 'open-uri'
-require 'nokogiri'
+load 'report.rb'
 
-def scrape(page_number)
-  sales_listings = []
-  doc = Nokogiri::HTML(open("http://streeteasy.com/for-sale/soho?page=#{page_number}sort_by=price_desc"))
-  doc.css(".listing").each do |listing|
-    full_street_address = listing.at_css(".details_title h5").text.split("#")
-    
-    listing_class = 'Sale'
-    address = full_street_address.first.strip
-    unit = full_street_address[1]
-    price = listing.at_css(".price").text
-    sales_listings << {listing_class: listing_class, address: address, unit: unit, price: price}
+if __FILE__ == $0
+  type = ARGV[0]
+  if type.nil?
+    puts "Usage: ruby main.rb <property_type>"
+    puts "Ex: ruby main.rb sale"
+  else
+    report = Report.new(type: type)
+    p report.json_data
   end
-  sales_listings.to_json
+
 end
